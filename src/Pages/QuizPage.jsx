@@ -26,7 +26,7 @@ export default function QuizPage() {
       navigation(ROUTES.RESULT, {
         state: {
           maxQuizLen: MAX_QUIZ_LEN,
-          correctNum: correctNum
+          correctNumLen: correctNum.length
         }
       })
     }
@@ -34,15 +34,10 @@ export default function QuizPage() {
 
   return (
     <>
-      {quizData[quizIndex] && <Display>
-        {`Q1. ${quizData[quizIndex].question}`}
-      </Display>}
-      {
-        quizData[quizIndex] && quizData[quizIndex].options.map((option, index) =>
-
-          <Button key={`option-${index}`} onClick={() => handleClick(index)}>{option}</Button>
-        )
-      }
+      {quizData[quizIndex] && <Display>{`Q${quizIndex + 1}. ${quizData[quizIndex].question}`}</Display>}
+      {quizData[quizIndex] && quizData[quizIndex].options.map((option, index) =>
+        <Button key={`option-${index}`} onClick={() => handleClick(index)}>{option}</Button>
+      )}
     </>
   )
 }
